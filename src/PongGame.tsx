@@ -1,8 +1,8 @@
 import React, { useRef, useEffect } from 'react'
 
 // TODO: don't hardcode these
-const AREA_HEIGHT = 150
-const AREA_WIDTH = 300
+const AREA_HEIGHT = 700
+const AREA_WIDTH = 1420
 const BALL_SPEED = 300
 const INITIAL_BALL_ANGLE = Math.PI / 8
 
@@ -16,14 +16,14 @@ function initialisePaddle(xPosition: number) {
       x: xPosition,
       y: AREA_HEIGHT / 2,
     },
-    width: 5,
+    width: 10,
     height: AREA_HEIGHT / 5
   }
 }
 
 function initialiseState(time: number) {
   const ball = {
-    radius: 5,
+    radius: 10,
     velocity: {
       x: BALL_SPEED * Math.cos(INITIAL_BALL_ANGLE),
       y: BALL_SPEED * Math.sin(INITIAL_BALL_ANGLE),
@@ -37,8 +37,8 @@ function initialiseState(time: number) {
     previousTime: time,
     ball: ball,
     paddles: {
-      left: initialisePaddle(10),
-      right: initialisePaddle(AREA_WIDTH - 10),
+      left: initialisePaddle(20),
+      right: initialisePaddle(AREA_WIDTH - 20),
     },
     scores: {
       left: 0,
@@ -64,7 +64,7 @@ function drawPaddle(paddle: any, ctx: CanvasRenderingContext2D) {
 }
 
 function drawScores(state: any, ctx: CanvasRenderingContext2D) {
-  ctx.font = '24px sans-serif'
+  ctx.font = '48px sans-serif'
   ctx.fillText(state.scores.left, 48, 48)
   ctx.fillText(state.scores.right, AREA_WIDTH - 48 * 2, 48)
 }
@@ -82,13 +82,17 @@ function pong(canvas: HTMLCanvasElement) {
   if (!ctx) { throw new Error('Could not get 2d context'); }
   const state = initialiseState(performance.now())
   draw(state, ctx)
+  return () => console.log('TODO: cleanup')
 }
 
 const PongGame: React.FC = () => {
   const canvasRef = useRef() as React.MutableRefObject<HTMLCanvasElement>
   useEffect(() => {
-    pong(canvasRef.current)
-    return () => console.log('TODO: cleanup')
+    const canvas = canvasRef.current
+    const pixelRatio = window.devicePixelRatio
+    canvas.width = canvas.clientWidth * pixelRatio
+    canvas.height = canvas.clientHeight * pixelRatio
+    return pong(canvas)
   }, [canvasRef])
   return (<canvas ref={canvasRef}></canvas>)
 }
