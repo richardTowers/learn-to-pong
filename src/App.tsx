@@ -1,26 +1,42 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import CodeMirror from 'react-codemirror';
+
+import './App.css'
+import 'codemirror/lib/codemirror.css'
+
+import 'codemirror/mode/javascript/javascript'
+import 'codemirror/theme/cobalt.css'
+
+const initialCode = `function () {
+  console.log('hello world')
+}`;
+
+const PongEditor: React.FC = () => {
+  return (
+    <CodeMirror value={initialCode} options={{
+      mode: 'javascript',
+      theme: 'cobalt',
+      tabSize: 2,
+      lineNumbers: true,
+      viewportMargin: Infinity,
+    }} />
+  )
+}
 
 const App: React.FC = () => {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="pong-editor">
+        <PongEditor />
+      </div>
+      <div className="pong-game">
+        TODO: pong game goes here
+      </div>
+      <div className="pong-tests">
+        TODO: pong tests goes here
+      </div>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
