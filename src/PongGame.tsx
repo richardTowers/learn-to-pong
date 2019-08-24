@@ -1,4 +1,5 @@
 import React, { useRef, useEffect } from 'react'
+import PongGraphics from './pong/graphics'
 
 // TODO: don't hardcode these
 const AREA_HEIGHT = 700
@@ -47,41 +48,12 @@ function initialiseState(time: number) {
   }
 }
 
-function drawBall(state: any, ctx: CanvasRenderingContext2D) {
-  ctx.beginPath()
-  ctx.arc(state.ball.position.x, state.ball.position.y, state.ball.radius, 0, 2 * Math.PI, false)
-  ctx.fill()
-}
-
-function drawPaddle(paddle: any, ctx: CanvasRenderingContext2D) {
-  ctx.rect(
-    paddle.position.x - paddle.width / 2,
-    paddle.position.y - paddle.height / 2,
-    paddle.width,
-    paddle.height
-  )
-  ctx.fill()
-}
-
-function drawScores(state: any, ctx: CanvasRenderingContext2D) {
-  ctx.font = '48px sans-serif'
-  ctx.fillText(state.scores.left, 48, 48)
-  ctx.fillText(state.scores.right, AREA_WIDTH - 48 * 2, 48)
-}
-
-function draw(state: any, ctx: CanvasRenderingContext2D) {
-  ctx.clearRect(0, 0, AREA_WIDTH, AREA_HEIGHT)
-  drawScores(state, ctx)
-  drawBall(state, ctx)
-  drawPaddle(state.paddles.left, ctx)
-  drawPaddle(state.paddles.right, ctx)
-}
-
 function pong(canvas: HTMLCanvasElement) {
+  const pongGraphics = new PongGraphics(AREA_WIDTH, AREA_HEIGHT)
   const ctx = canvas.getContext('2d')
   if (!ctx) { throw new Error('Could not get 2d context'); }
   const state = initialiseState(performance.now())
-  draw(state, ctx)
+  pongGraphics.draw(state, ctx)
   return () => console.log('TODO: cleanup')
 }
 
