@@ -6,9 +6,9 @@ export default class PongGraphics {
     private readonly areaHeight: number,
   ) {}
 
-  private drawBall(state: PongState, ctx: CanvasRenderingContext2D) {
+  private drawBall(ball: PongBall, ctx: CanvasRenderingContext2D) {
     ctx.beginPath()
-    ctx.arc(state.ball.position.x, state.ball.position.y, state.ball.radius, 0, 2 * Math.PI, false)
+    ctx.arc(ball.position.x, ball.position.y, ball.radius, 0, 2 * Math.PI, false)
     ctx.fill()
   }
 
@@ -28,10 +28,10 @@ export default class PongGraphics {
     ctx.fillText(state.scores.right.toString(), this.areaWidth - 48 * 2, 48)
   }
 
-  public draw(state: any, ctx: CanvasRenderingContext2D) {
+  public draw(state: PongState, ctx: CanvasRenderingContext2D) {
     ctx.clearRect(0, 0, this.areaWidth, this.areaHeight)
     this.drawScores(state, ctx)
-    this.drawBall(state, ctx)
+    this.drawBall(state.ball, ctx)
     this.drawPaddle(state.paddles.left, ctx)
     this.drawPaddle(state.paddles.right, ctx)
   }
