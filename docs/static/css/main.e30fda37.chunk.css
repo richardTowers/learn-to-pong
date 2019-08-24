@@ -1,0 +1,2 @@
+body{margin:0}#root,.App,.ReactCodeMirror,body,html{height:100%}.App{display:grid;grid-template-columns:[editor] 50% [game-and-tests] 50%;grid-template-rows:[top] 1fr [bottom] 1fr}.App .CodeMirror{height:100%;font-size:18px}.pong-editor{grid-row-start:1;grid-row-end:span 2}.pong-game{border:5px solid #000}.pong-game canvas{height:100%;width:100%}
+/*# sourceMappingURL=main.e30fda37.chunk.css.map */
