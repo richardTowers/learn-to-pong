@@ -19,7 +19,7 @@ html,body,#root,.App,.ReactCodeMirror {
 }
 
 .pong-game {
-  border: 5px solid chartreuse;
+  border: 5px solid black;
 }
 .pong-game canvas {
   height: 100%;
@@ -27,5 +27,5 @@ html,body,#root,.App,.ReactCodeMirror {
 }
 
 .pong-tests {
-  background-color: magenta;
+
 }

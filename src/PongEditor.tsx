@@ -1,14 +1,9 @@
 import React from 'react'
 import CodeMirror from 'react-codemirror'
 
-const initialCode = `function updatePosition (state, time) {
-  state.pos.x = state.pos.x + state.speed.x * time
-  state.pos.y = state.pos.y + state.speed.y * time
-}`;
-
-const PongEditor: React.FC = () => {
+const PongEditor: React.FC<{value: string}> = (props) => {
   return (
-    <CodeMirror value={initialCode} options={{
+    <CodeMirror value={props.value} options={{
       mode: 'javascript',
       theme: 'cobalt',
       tabSize: 2,
