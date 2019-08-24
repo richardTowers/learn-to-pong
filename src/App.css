@@ -4,13 +4,13 @@ html,body,#root,.App,.ReactCodeMirror {
 
 .App {
   display: grid;
-  grid-template-columns: [editor] 1fr [game-and-tests] 1fr;
+  grid-template-columns: [editor] 50% [game-and-tests] 50%;
   grid-template-rows: [top] 1fr [bottom] 1fr;
 }
 
 .App .CodeMirror {
   height: 100%;
-  font-size: 24px;
+  font-size: 18px;
 }
 
 .pong-editor {
