@@ -71,4 +71,5 @@ details.testResult .detailsBody {
   padding-left: 2rem;
   padding-top: 10px;
   white-space: pre;
+  font-family: monospace;
 }
