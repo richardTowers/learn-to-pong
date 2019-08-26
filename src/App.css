@@ -67,4 +67,5 @@ html,body,#root,.App,.ReactCodeMirror {
 details.testResult .detailsBody {
   padding-left: 2rem;
   padding-top: 10px;
+  white-space: pre;
 }

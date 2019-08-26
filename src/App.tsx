@@ -47,20 +47,17 @@ function unpause (state) {
 }`;
 
 
+const worker = new Worker('./sandbox.js')
+worker.postMessage({type: 'codeChange', code: initialCode})
+
 const App: React.FC = () => {
-  const worker = new Worker('./sandbox.js')
-  const [testState, setTestState] = useState([{
-    id: 0,
-    state: 'success',
-    message: 'paused should be a function',
-    details: 'tested it and it worked lol',
-  }])
+  const [testState, setTestState] = useState([])
   worker.onmessage = (ev: MessageEvent) => setTestState(ev.data.testState)
   // TODO: debounce the events
   return (
     <div className="App">
       <div className="pong-editor">
-        <PongEditor value={initialCode} onChange={newValue => worker.postMessage(newValue)}/>
+        <PongEditor value={initialCode} onChange={code => worker.postMessage({type: 'codeChange', code: code})}/>
       </div>
       <div className="pong-game">
         <PongGame />
