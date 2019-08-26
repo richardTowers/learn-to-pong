@@ -76,6 +76,7 @@ onmessage = function(messageEvent) {
         const testResults = testCode(result)
         this.postMessage({
           type: 'testResults',
+          code: messageEvent.data.code,
           testState: [{
             id: 0,
             state: 'success',
@@ -85,6 +86,7 @@ onmessage = function(messageEvent) {
       } catch (e) {
         this.postMessage({
           type: 'testResults',
+          code: messageEvent.data.code,
           testState: [{
             id: 0,
             state: 'failure',

@@ -10,7 +10,7 @@ import 'codemirror/lib/codemirror.css'
 import 'codemirror/mode/javascript/javascript'
 import 'codemirror/theme/cobalt.css'
 
-const initialCode = `/*
+const defaultCode = `/*
  *  -----------------------------
  * | Welcome to "Learn to Pong!" |
  *  -----------------------------
@@ -48,12 +48,21 @@ function unpause (state) {
 }`;
 
 
+const codeFromStorage = localStorage.getItem('pong-code')
+const initialCode = codeFromStorage || defaultCode
+
 const worker = new Worker('./sandbox.js')
 worker.postMessage({type: 'codeChange', code: initialCode})
 
 const App: React.FC = () => {
   const [testState, setTestState] = useState([])
-  worker.onmessage = (ev: MessageEvent) => setTestState(ev.data.testState)
+  worker.onmessage = (ev: MessageEvent) => {
+    setTestState(ev.data.testState)
+    // The first test is "it should run without error" - only save the code if it doesn't error
+    if (ev.data.testState[0].state === 'success') {
+      localStorage.setItem('pong-code', ev.data.code)
+    }
+  }
   return (
     <div className="App">
       <div className="pong-editor">
