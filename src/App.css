@@ -1,3 +1,6 @@
+* {
+  box-sizing: border-box;
+}
 body {
   font-family: Arial, Helvetica, sans-serif;
 }
@@ -22,7 +25,8 @@ html,body,#root,.App,.ReactCodeMirror {
 }
 
 .pong-game {
-  border: 5px solid black;
+  border: 5px solid white;
+  background-color: #001629;
 }
 .pong-game canvas {
   height: 100%;
@@ -37,6 +41,7 @@ html,body,#root,.App,.ReactCodeMirror {
   padding: 20px;
   background-color: #003665;
   height: 100%;
+  border-left: 5px solid white;
 }
 
 .testResult {

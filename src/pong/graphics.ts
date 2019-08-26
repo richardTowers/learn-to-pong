@@ -30,6 +30,7 @@ export default class PongGraphics {
 
   public draw(state: PongState, ctx: CanvasRenderingContext2D) {
     ctx.clearRect(0, 0, this.areaWidth, this.areaHeight)
+    ctx.fillStyle = 'white'
     this.drawScores(state, ctx)
     this.drawBall(state.ball, ctx)
     this.drawPaddle(state.paddles.left, ctx)
