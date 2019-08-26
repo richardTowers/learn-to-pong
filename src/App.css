@@ -1,3 +1,6 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
 html,body,#root,.App,.ReactCodeMirror {
   height: 100%;
 }
@@ -28,4 +31,30 @@ html,body,#root,.App,.ReactCodeMirror {
 
 .pong-tests {
 
+}
+
+.testResults {
+  padding: 20px;
+  background-color: #003665;
+  height: 100%;
+}
+
+.testResult {
+  padding-bottom: 10px;
+}
+
+.testResult.success::before {
+  content: '✔︎ ';
+}
+
+.testResult.success {
+  color: lime;
+}
+
+.testResult.failure {
+  color: #ff5454;
+}
+
+.testResult.failure::before {
+  content: '✘ ';
 }
