@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/learn-to-pong/precache-manifest.885e0caab13b75320b470f48dfec405b.js"
+  "/learn-to-pong/precache-manifest.8d77d6cc7853f5fb7c62425fb84466ec.js"
 );
 
 self.addEventListener('message', (event) => {
