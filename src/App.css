@@ -48,7 +48,7 @@ html,body,#root,.App,.ReactCodeMirror {
   padding-bottom: 10px;
 }
 
-.testResult.success::before {
+.testResult.success summary::before {
   content: '✔︎ ';
 }
 
@@ -60,6 +60,11 @@ html,body,#root,.App,.ReactCodeMirror {
   color: #ff5454;
 }
 
-.testResult.failure::before {
+.testResult.failure summary::before {
   content: '✘ ';
+}
+
+details.testResult .detailsBody {
+  padding-left: 2rem;
+  padding-top: 10px;
 }

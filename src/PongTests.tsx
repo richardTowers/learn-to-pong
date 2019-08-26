@@ -1,12 +1,14 @@
 import React from 'react'
 
-const PongTests: React.FC = () => {
+const PongTests: React.FC<{tests: any[]}> = (props) => {
   return (
     <div className="testResults">
-      <div className="testResult success">pause should be a function</div>
-      <div className="testResult success">unpause should be a function</div>
-      <div className="testResult failure">pause should set <code>state.paused</code> to true</div>
-      <div className="testResult failure">unpause should set <code>state.paused</code> to false</div>
+      {props.tests.map(test => 
+        <details key={test.id} className={test.state + " testResult"}>
+          <summary>{test.message}</summary>
+          <div className="detailsBody">{test.details}</div>
+        </details>
+      )}
     </div>
   )
 }

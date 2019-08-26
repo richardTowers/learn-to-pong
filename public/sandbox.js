@@ -1,3 +1,10 @@
 onmessage = function(messageEvent) {
-  console.log('From worker: ', messageEvent.data);
+  this.postMessage({
+    testState: [{
+      id: 0,
+      state: 'failure',
+      message: 'paused should be a function',
+      details: 'didn\'t work lol',
+    }]
+  })
 }

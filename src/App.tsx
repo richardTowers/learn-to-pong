@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import PongEditor from './PongEditor'
 import PongGame from './PongGame'
 import PongTests from './PongTests'
@@ -46,9 +46,16 @@ function unpause (state) {
   // TODO implement this
 }`;
 
-const worker = new Worker('./sandbox.js')
 
 const App: React.FC = () => {
+  const worker = new Worker('./sandbox.js')
+  const [testState, setTestState] = useState([{
+    id: 0,
+    state: 'success',
+    message: 'paused should be a function',
+    details: 'tested it and it worked lol',
+  }])
+  worker.onmessage = (ev: MessageEvent) => setTestState(ev.data.testState)
   // TODO: debounce the events
   return (
     <div className="App">
@@ -59,7 +66,7 @@ const App: React.FC = () => {
         <PongGame />
       </div>
       <div className="pong-tests">
-        <PongTests />
+        <PongTests tests={testState} />
       </div>
     </div>
   )
