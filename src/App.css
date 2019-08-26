@@ -28,6 +28,9 @@ html,body,#root,.App,.ReactCodeMirror {
   border: 5px solid white;
   background-color: #001629;
 }
+.pong-game:focus {
+  border: 5px solid chartreuse;
+}
 .pong-game canvas {
   height: 100%;
   width: 100%;

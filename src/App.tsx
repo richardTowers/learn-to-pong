@@ -68,7 +68,7 @@ const App: React.FC = () => {
       <div className="pong-editor">
         <PongEditor value={initialCode} onChange={debounce(code => worker.postMessage({type: 'codeChange', code: code}), 300)}/>
       </div>
-      <div className="pong-game">
+      <div className="pong-game" tabIndex={-1}>
         <PongGame />
       </div>
       <div className="pong-tests">
