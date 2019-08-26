@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import {debounce} from 'lodash'
 import PongEditor from './PongEditor'
 import PongGame from './PongGame'
 import PongTests from './PongTests'
@@ -53,11 +54,10 @@ worker.postMessage({type: 'codeChange', code: initialCode})
 const App: React.FC = () => {
   const [testState, setTestState] = useState([])
   worker.onmessage = (ev: MessageEvent) => setTestState(ev.data.testState)
-  // TODO: debounce the events
   return (
     <div className="App">
       <div className="pong-editor">
-        <PongEditor value={initialCode} onChange={code => worker.postMessage({type: 'codeChange', code: code})}/>
+        <PongEditor value={initialCode} onChange={debounce(code => worker.postMessage({type: 'codeChange', code: code}), 300)}/>
       </div>
       <div className="pong-game">
         <PongGame />
