@@ -46,11 +46,14 @@ function unpause (state) {
   // TODO implement this
 }`;
 
+const worker = new Worker('./sandbox.js')
+
 const App: React.FC = () => {
+  // TODO: debounce the events
   return (
     <div className="App">
       <div className="pong-editor">
-        <PongEditor value={initialCode}/>
+        <PongEditor value={initialCode} onChange={newValue => worker.postMessage(newValue)}/>
       </div>
       <div className="pong-game">
         <PongGame />
