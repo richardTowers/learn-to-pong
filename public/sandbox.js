@@ -1,10 +1,12 @@
 function evaluateCode (code) {
   'use strict'
   var fn = new Function(`
+  function init() {}
   function moveBall() {}
   function bounceWall() {}
   ${code};
   return {
+    init: init,
     moveBall: moveBall,
     bounceWall: bounceWall,
   }`)
@@ -42,6 +44,10 @@ let functions = {};
 
 function tick(state, time) {
   const dt = time ? Math.min(1, (time - state.previousTime) / 1000) : 0
+  if (!state.initialised && functions.init) {
+    functions.init(state)
+    state.initialised = true
+  }
   ;(functions.moveBall || noop)(state.ball, dt)
   ;(functions.bounceWall || noop)(state, dt)
 }

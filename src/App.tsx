@@ -10,20 +10,16 @@ import 'codemirror/lib/codemirror.css'
 import 'codemirror/mode/javascript/javascript'
 import 'codemirror/theme/cobalt.css'
 
-const defaultCode = `function moveBall(ball, dt) {
-  ball.position = {
-    x: ball.position.x + ball.velocity.x * dt,
-    y: ball.position.y + ball.velocity.y * dt,
-  }
+const defaultCode = `function init(state) {
+
+}
+
+function moveBall(ball, dt) {
+
 }
 
 function bounceWall(state) {
-  if (state.ball.position.y + state.ball.radius >= state.areaHeight) {
-    state.ball.velocity.y = -Math.abs(state.ball.velocity.y)
-  }
-  if (state.ball.position.y - state.ball.radius <= 0) {
-    state.ball.velocity.y = Math.abs(state.ball.velocity.y)
-  }
+
 }`;
 
 const codeFromStorage = localStorage.getItem('pong-code')
