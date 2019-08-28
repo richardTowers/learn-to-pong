@@ -54,7 +54,7 @@ export default class PongState {
 
   constructor(areaWidth: number, areaHeight: number, ballSpeed: number, time: number) {
     this.previousTime = time
-    this.ball = new PongBall(areaWidth, areaHeight, ballSpeed, Math.PI / 8)
+    this.ball = new PongBall(areaWidth, areaHeight, ballSpeed, Math.PI / 2)
     this.paddles = {
       left: new PongPaddle(areaHeight, 20),
       right: new PongPaddle(areaHeight, areaWidth - 20),

@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import {debounce} from 'lodash'
 import PongEditor from './PongEditor'
 import PongGame from './PongGame'
@@ -52,24 +52,26 @@ const codeFromStorage = localStorage.getItem('pong-code')
 const initialCode = codeFromStorage || defaultCode
 
 const worker = new Worker('./sandbox.js')
-worker.postMessage({type: 'codeChange', code: initialCode})
-
 const App: React.FC = () => {
   const [testState, setTestState] = useState([])
-  worker.onmessage = (ev: MessageEvent) => {
-    setTestState(ev.data.testState)
-    // The first test is "it should run without error" - only save the code if it doesn't error
-    if (ev.data.testState[0].state === 'success') {
-      localStorage.setItem('pong-code', ev.data.code)
-    }
-  }
+  useEffect(() => {
+    worker.postMessage({type: 'codeChange', code: initialCode})
+    worker.addEventListener('message', (ev: MessageEvent) => {
+      if (ev.data.type !== 'testResults') { return }
+      setTestState(ev.data.testState)
+      // The first test is "it should run without error" - only save the code if it doesn't error
+      if (ev.data.testState[0].state === 'success') {
+        localStorage.setItem('pong-code', ev.data.code)
+      }
+    })
+  }, [])
   return (
     <div className="App">
       <div className="pong-editor">
         <PongEditor value={initialCode} onChange={debounce(code => worker.postMessage({type: 'codeChange', code: code}), 300)}/>
       </div>
       <div className="pong-game" tabIndex={-1}>
-        <PongGame />
+        <PongGame worker={worker}/>
       </div>
       <div className="pong-tests">
         <PongTests tests={testState} />

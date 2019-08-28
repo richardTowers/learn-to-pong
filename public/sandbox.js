@@ -1,6 +1,6 @@
 function evaluateCode (code) {
   'use strict'
-  var fn = new Function(code + ';return {pause: pause, unpause: unpause}')
+  var fn = new Function(code + ';return {pause: pause, unpause: unpause, moveBall: moveBall}')
   return fn()
 }
 
@@ -66,14 +66,21 @@ function testCode (functions) {
   }
 }
 
+const noop = () => {};
+let functions = {};
+
+function tick(state, time) {
+  const dt = time ? Math.min(1, (time - state.previousTime) / 1000) : 0
+  ;(functions.moveBall || noop)(state.ball, dt)
+}
+
 onmessage = function(messageEvent) {
   'use strict'
   switch(messageEvent.data.type) {
     case 'codeChange':
-      console.log('test')
       try {
-        const result = evaluateCode(messageEvent.data.code)
-        const testResults = testCode(result)
+        functions = evaluateCode(messageEvent.data.code)
+        const testResults = testCode(functions)
         this.postMessage({
           type: 'testResults',
           code: messageEvent.data.code,
@@ -96,5 +103,16 @@ onmessage = function(messageEvent) {
         })
       }
       break
+    case 'tick':
+      const state = messageEvent.data.state
+      try {
+        tick(state, messageEvent.data.time)
+      } catch(e) {
+        this.console.error(e)
+      }
+      this.postMessage({
+        type: 'tock',
+        state: state,
+      })
   }
 }
