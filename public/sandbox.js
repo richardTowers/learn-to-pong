@@ -1,48 +1,19 @@
 function evaluateCode (code) {
   'use strict'
-  var fn = new Function(code + ';return {pause: pause, unpause: unpause, moveBall: moveBall}')
+  var fn = new Function(`
+  function moveBall() {}
+  function bounceWall() {}
+  ${code};
+  return {
+    moveBall: moveBall,
+    bounceWall: bounceWall,
+  }`)
   return fn()
 }
 
 function testCode (functions) {
   with (functions) {
-    return [{
-      test: () => {
-        var state = { paused: false}
-        pause(state)
-        if(state.paused !== true) {
-          throw 'expected state.paused to be true, was ' + state.paused
-        }
-      },
-      message: 'pause should set state.paused from false to true',
-    }, {
-      test: () => {
-        var state = { paused: true }
-        pause(state)
-        if(state.paused !== true) {
-          throw 'expected state.paused to be true, was ' + state.paused
-        }
-      },
-      message: 'pause should set state.paused from true to true',
-    }, {
-      test: () => {
-        var state = { paused: true }
-        unpause(state)
-        if(state.paused !== false) {
-          throw 'expected state.paused to be false, was ' + state.paused
-        }
-      },
-      message: 'unpause should set state.paused from true to false',
-    }, {
-      test: () => {
-        var state = { paused: false }
-        unpause(state)
-        if(state.paused !== false) {
-          throw 'expected state.paused to be false, was ' + state.paused
-        }
-      },
-      message: 'unpause should set state.paused from false to false',
-    }].map((x, i) => {
+    return [].map((x, i) => {
       try {
         const lines = x.test.toString().split('\n')
         const indent = lines[1].length - lines[1].trimStart().length
@@ -72,6 +43,7 @@ let functions = {};
 function tick(state, time) {
   const dt = time ? Math.min(1, (time - state.previousTime) / 1000) : 0
   ;(functions.moveBall || noop)(state.ball, dt)
+  ;(functions.bounceWall || noop)(state, dt)
 }
 
 onmessage = function(messageEvent) {
