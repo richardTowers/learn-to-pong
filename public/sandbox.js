@@ -4,10 +4,12 @@ function evaluateCode (code) {
   function init() {}
   function moveBall() {}
   function bounceWall() {}
+  function movePaddles() {}
   ${code};
   return {
     init: init,
     moveBall: moveBall,
+    movePaddles: movePaddles,
     bounceWall: bounceWall,
   }`)
   return fn()
@@ -48,6 +50,7 @@ function tick(state, time) {
     functions.init(state)
     state.initialised = true
   }
+  ;(functions.movePaddles || noop)(state.paddles, dt)
   ;(functions.moveBall || noop)(state.ball, dt)
   ;(functions.bounceWall || noop)(state, dt)
 }

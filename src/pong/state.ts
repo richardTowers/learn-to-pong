@@ -53,8 +53,10 @@ export default class PongState {
   public scores: LeftRight<number>
   public areaWidth: number
   public areaHeight: number
+  public paddlesSpeed: any;
 
   constructor(areaWidth: number, areaHeight: number, ballSpeed: number, time: number) {
+    this.paddlesSpeed = areaHeight / 50
     this.areaWidth = areaWidth
     this.areaHeight = areaHeight
     this.previousTime = time
