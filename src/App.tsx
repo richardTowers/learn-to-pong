@@ -18,7 +18,11 @@ function moveBall(ball, dt) {
 
 }
 
-function bounceWall(state) {
+function bounceWall(state, dt) {
+
+}
+
+function movePaddles(paddles, dt) {
 
 }`;
 
