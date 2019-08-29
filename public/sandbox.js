@@ -103,6 +103,36 @@ function testCode (functions) {
         }
       },
       message: 'bounceWall should bounce the ball off the top wall'
+    }, {
+      test: function () {
+        var paddles = {
+          left: { position: { x: 0, y: 0}, velocity: {x: 0, y: 5}},
+          right: { position: { x: 0, y: 0}, velocity: {x: 0, y: 0}},
+        }
+        functions.movePaddles(paddles, 6)
+        if (paddles.left.position.y !== 5*6) {
+          throw new Error(`left paddle should have moved down by 5*6 pixels (v= 5, dt = 6)`)
+        }
+        if (paddles.left.position.x !== 0) {
+          throw new Error(`left paddle should not have moved horizontally`)
+        }
+      },
+      message: 'movePaddles should move the left paddle'
+    }, {
+      test: function () {
+        var paddles = {
+          left: { position: { x: 0, y: 0}, velocity: {x: 0, y: 0}},
+          right: { position: { x: 0, y: 0}, velocity: {x: 0, y: 5}},
+        }
+        functions.movePaddles(paddles, 6)
+        if (paddles.right.position.y !== 5*6) {
+          throw new Error(`right paddle should have moved down by 5*6 pixels (v= 5, dt = 6)`)
+        }
+        if (paddles.right.position.x !== 0) {
+          throw new Error(`right paddle should not have moved horizontally`)
+        }
+      },
+      message: 'movePaddles should move the right paddle'
     }].map((x, i) => {
       try {
         const lines = x.test.toString().split('\n')
