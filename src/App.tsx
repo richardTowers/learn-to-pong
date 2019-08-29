@@ -24,6 +24,18 @@ function bounceWall(state, dt) {
 
 function movePaddles(paddles, dt) {
 
+}
+
+function clampPaddles(paddles, dt) {
+
+}
+
+function bouncePaddles(state, dt) {
+
+}
+
+function scoreGoal(state, dt) {
+
 }`;
 
 const codeFromStorage = localStorage.getItem('pong-code')

@@ -5,12 +5,18 @@ function evaluateCode (code) {
   function moveBall() {}
   function bounceWall() {}
   function movePaddles() {}
+  function clampPaddles() {}
+  function bouncePaddles() {}
+  function scoreGoal() {}
   ${code};
   return {
     init: init,
     moveBall: moveBall,
     movePaddles: movePaddles,
+    clampPaddles: clampPaddles,
     bounceWall: bounceWall,
+    bouncePaddles: bouncePaddles,
+    scoreGoal: scoreGoal,
   }`)
   return fn()
 }
@@ -169,6 +175,9 @@ function tick(state, time) {
   ;(functions.movePaddles || noop)(state.paddles, dt)
   ;(functions.moveBall || noop)(state.ball, dt)
   ;(functions.bounceWall || noop)(state, dt)
+  ;(functions.clampPaddles || noop)(state.paddles, dt)
+  ;(functions.bouncePaddles || noop)(state, dt)
+  ;(functions.scoreGoal || noop)(state, dt)
 }
 
 onmessage = function(messageEvent) {
