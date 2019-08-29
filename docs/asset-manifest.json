@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/learn-to-pong/static/css/main.b9983314.chunk.css",
-    "main.js": "/learn-to-pong/static/js/main.e3ed3274.chunk.js",
-    "main.js.map": "/learn-to-pong/static/js/main.e3ed3274.chunk.js.map",
+    "main.js": "/learn-to-pong/static/js/main.5442e74c.chunk.js",
+    "main.js.map": "/learn-to-pong/static/js/main.5442e74c.chunk.js.map",
     "runtime~main.js": "/learn-to-pong/static/js/runtime~main.a9b4762d.js",
     "runtime~main.js.map": "/learn-to-pong/static/js/runtime~main.a9b4762d.js.map",
     "static/css/2.66259513.chunk.css": "/learn-to-pong/static/css/2.66259513.chunk.css",
     "static/js/2.28d28b6f.chunk.js": "/learn-to-pong/static/js/2.28d28b6f.chunk.js",
     "static/js/2.28d28b6f.chunk.js.map": "/learn-to-pong/static/js/2.28d28b6f.chunk.js.map",
     "index.html": "/learn-to-pong/index.html",
-    "precache-manifest.575ce170fdfe271dbf7a6c825c9d3f0c.js": "/learn-to-pong/precache-manifest.575ce170fdfe271dbf7a6c825c9d3f0c.js",
+    "precache-manifest.06c9f00fa85fd0225e0d4fa96b2e1adb.js": "/learn-to-pong/precache-manifest.06c9f00fa85fd0225e0d4fa96b2e1adb.js",
     "service-worker.js": "/learn-to-pong/service-worker.js",
     "static/css/2.66259513.chunk.css.map": "/learn-to-pong/static/css/2.66259513.chunk.css.map",
     "static/css/main.b9983314.chunk.css.map": "/learn-to-pong/static/css/main.b9983314.chunk.css.map"
