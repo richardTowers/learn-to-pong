@@ -175,7 +175,7 @@ function tick(state, time) {
   ;(functions.movePaddles || noop)(state.paddles, dt)
   ;(functions.moveBall || noop)(state.ball, dt)
   ;(functions.bounceWall || noop)(state, dt)
-  ;(functions.clampPaddles || noop)(state.paddles, dt)
+  ;(functions.clampPaddles || noop)(state, dt)
   ;(functions.bouncePaddles || noop)(state, dt)
   ;(functions.scoreGoal || noop)(state, dt)
 }

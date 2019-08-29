@@ -26,7 +26,7 @@ function movePaddles(paddles, dt) {
 
 }
 
-function clampPaddles(paddles, dt) {
+function clampPaddles(state, dt) {
 
 }
 
