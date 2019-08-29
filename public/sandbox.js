@@ -77,6 +77,32 @@ function testCode (functions) {
         }
       },
       message: 'moveBall should move the ball diagonally by v*dt (right and down)'
+    }, {
+      test: function () {
+        var ball = {position:{x:100,y:200},velocity:{x:0,y:10}}
+        var state = { ball: ball, areaHeight: 200 }
+        functions.bounceWall(state)
+        if (ball.velocity.x !== 0) {
+          throw new Error(`ball should have still have 0 horizontal velocity`)
+        }
+        if (ball.velocity.y != -10) {
+          throw new Error(`ball should have reversed its vertical velocity (was ${ball.velocity.y}, should have been -10)`)
+        }
+      },
+      message: 'bounceWall should bounce the ball off the bottom wall'
+    }, {
+      test: function () {
+        var ball = {position:{x:100,y:0},velocity:{x:0,y:-10}}
+        var state = { ball: ball, areaHeight: 200 }
+        functions.bounceWall(state)
+        if (ball.velocity.x !== 0) {
+          throw new Error(`ball should have still have 0 horizontal velocity`)
+        }
+        if (ball.velocity.y != 10) {
+          throw new Error(`ball should have reversed its vertical velocity (was ${ball.velocity.y}, should have been 10)`)
+        }
+      },
+      message: 'bounceWall should bounce the ball off the top wall'
     }].map((x, i) => {
       try {
         const lines = x.test.toString().split('\n')
