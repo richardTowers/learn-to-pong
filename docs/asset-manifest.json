@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/learn-to-pong/static/css/main.cca59637.chunk.css",
-    "main.js": "/learn-to-pong/static/js/main.afb958e3.chunk.js",
-    "main.js.map": "/learn-to-pong/static/js/main.afb958e3.chunk.js.map",
-    "runtime~main.js": "/learn-to-pong/static/js/runtime~main.5b2ce8fb.js",
-    "runtime~main.js.map": "/learn-to-pong/static/js/runtime~main.5b2ce8fb.js.map",
+    "main.css": "/learn-to-pong/static/css/main.b9983314.chunk.css",
+    "main.js": "/learn-to-pong/static/js/main.4409b616.chunk.js",
+    "main.js.map": "/learn-to-pong/static/js/main.4409b616.chunk.js.map",
+    "runtime~main.js": "/learn-to-pong/static/js/runtime~main.a9b4762d.js",
+    "runtime~main.js.map": "/learn-to-pong/static/js/runtime~main.a9b4762d.js.map",
     "static/css/2.66259513.chunk.css": "/learn-to-pong/static/css/2.66259513.chunk.css",
-    "static/js/2.50eab6f8.chunk.js": "/learn-to-pong/static/js/2.50eab6f8.chunk.js",
-    "static/js/2.50eab6f8.chunk.js.map": "/learn-to-pong/static/js/2.50eab6f8.chunk.js.map",
+    "static/js/2.28d28b6f.chunk.js": "/learn-to-pong/static/js/2.28d28b6f.chunk.js",
+    "static/js/2.28d28b6f.chunk.js.map": "/learn-to-pong/static/js/2.28d28b6f.chunk.js.map",
     "index.html": "/learn-to-pong/index.html",
-    "precache-manifest.8d77d6cc7853f5fb7c62425fb84466ec.js": "/learn-to-pong/precache-manifest.8d77d6cc7853f5fb7c62425fb84466ec.js",
+    "precache-manifest.45c4c231a874f2b178c15b8453c90e32.js": "/learn-to-pong/precache-manifest.45c4c231a874f2b178c15b8453c90e32.js",
     "service-worker.js": "/learn-to-pong/service-worker.js",
     "static/css/2.66259513.chunk.css.map": "/learn-to-pong/static/css/2.66259513.chunk.css.map",
-    "static/css/main.cca59637.chunk.css.map": "/learn-to-pong/static/css/main.cca59637.chunk.css.map"
+    "static/css/main.b9983314.chunk.css.map": "/learn-to-pong/static/css/main.b9983314.chunk.css.map"
   }
 }
