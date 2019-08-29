@@ -17,7 +17,67 @@ function evaluateCode (code) {
 
 function testCode (functions) {
   with (functions) {
-    return [].map((x, i) => {
+    return [{
+      test: function () {
+        var ball = {position:{x:100,y:100},velocity:{x:2,y:0}}
+        functions.moveBall(ball, 3)
+        if (ball.position.x !== 100 + 2*3) {
+          throw new Error(`ball should have moved right by 2*3 pixels (v = 2, dt = 3)`)
+        }
+        if (ball.position.y !== 100) {
+          throw new Error(`ball should not have moved up or down (v = 0)`)
+        }
+      },
+      message: 'moveBall should move the ball right by v*dt'
+    }, {
+      test: function () {
+        var ball = {position:{x:100,y:100},velocity:{x:-2,y:0}}
+        functions.moveBall(ball, 3)
+        if (ball.position.x !== 100 - 2*3) {
+          throw new Error(`ball should have moved left by 2*3 pixels (v = -2, dt = 3)`)
+        }
+        if (ball.position.y !== 100) {
+          throw new Error(`ball should not have moved up or down (v = 0)`)
+        }
+      },
+      message: 'moveBall should move the ball left by v*dt'
+    }, {
+      test: function () {
+        var ball = {position:{x:100,y:100},velocity:{x:0,y:-2}}
+        functions.moveBall(ball, 3)
+        if (ball.position.y !== 100 - 2*3) {
+          throw new Error(`ball should have moved up by 2*3 pixels (v = -2, dt = 3)`)
+        }
+        if (ball.position.x !== 100) {
+          throw new Error(`ball should not have moved left or right (v = 0)`)
+        }
+      },
+      message: 'moveBall should move the ball up by v*dt'
+    }, {
+      test: function () {
+        var ball = {position:{x:100,y:100},velocity:{x:0,y:2}}
+        functions.moveBall(ball, 3)
+        if (ball.position.y !== 100 + 2*3) {
+          throw new Error(`ball should have moved down by 2*3 pixels (v = 2, dt = 3)`)
+        }
+        if (ball.position.x !== 100) {
+          throw new Error(`ball should not have moved left or right (v = 0)`)
+        }
+      },
+      message: 'moveBall should move the ball down by v*dt'
+    }, {
+      test: function () {
+        var ball = {position:{x:100,y:100},velocity:{x:3,y:4}}
+        functions.moveBall(ball, 3)
+        if (ball.position.x !== 100 + 3*3) {
+          throw new Error(`ball should have moved down by 3*3 pixels (v = 3, dt = 3)`)
+        }
+        if (ball.position.y !== 100 + 4*3) {
+          throw new Error(`ball should have moved down by 4*3 pixels (v = 4, dt = 3)`)
+        }
+      },
+      message: 'moveBall should move the ball diagonally by v*dt (right and down)'
+    }].map((x, i) => {
       try {
         const lines = x.test.toString().split('\n')
         const indent = lines[1].length - lines[1].trimStart().length
