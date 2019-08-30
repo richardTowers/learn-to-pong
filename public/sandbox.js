@@ -139,6 +139,78 @@ function testCode (functions) {
         }
       },
       message: 'movePaddles should move the right paddle'
+    }, {
+      test: function () {
+        var state = {
+          areaHeight: 100,
+          paddles: {
+            left: { position: { x: 0, y: 0}, height: 20, velocity: {x: 0, y: 0}},
+            right: { position: { x: 0, y: 0}, height: 20, velocity: {x: 0, y: 0}},
+          }
+        }
+        functions.clampPaddles(state)
+        if (state.paddles.left.position.y !== 10) {
+          throw new Error(`left paddle should have moved down to 1/2 its height from the top of the area`)
+        }
+        if (state.paddles.left.position.x !== 0) {
+          throw new Error(`left paddle should not have moved horizontally`)
+        }
+      },
+      message: 'clampPaddles should stop the left paddle at the top of the area'
+    }, {
+      test: function () {
+        var state = {
+          areaHeight: 100,
+          paddles: {
+            left: { position: { x: 0, y: 0}, height: 20, velocity: {x: 0, y: 0}},
+            right: { position: { x: 0, y: 0}, height: 20, velocity: {x: 0, y: 0}},
+          }
+        }
+        functions.clampPaddles(state)
+        if (state.paddles.right.position.y !== 10) {
+          throw new Error(`left paddle should have moved down to 1/2 its height from the top of the area`)
+        }
+        if (state.paddles.right.position.x !== 0) {
+          throw new Error(`left paddle should not have moved horizontally`)
+        }
+      },
+      message: 'clampPaddles should stop the right paddle at the top of the area'
+    }, {
+      test: function () {
+        var state = {
+          areaHeight: 100,
+          paddles: {
+            left: { position: { x: 0, y: 100}, height: 20, velocity: {x: 0, y: 0}},
+            right: { position: { x: 0, y: 100}, height: 20, velocity: {x: 0, y: 0}},
+          }
+        }
+        functions.clampPaddles(state)
+        if (state.paddles.left.position.y !== 90) {
+          throw new Error(`left paddle should have moved down to 1/2 its height from the top of the area`)
+        }
+        if (state.paddles.left.position.x !== 0) {
+          throw new Error(`left paddle should not have moved horizontally`)
+        }
+      },
+      message: 'clampPaddles should stop the left paddle at the bottom of the area'
+    }, {
+      test: function () {
+        var state = {
+          areaHeight: 100,
+          paddles: {
+            left: { position: { x: 0, y: 100}, height: 20, velocity: {x: 0, y: 0}},
+            right: { position: { x: 0, y: 100}, height: 20, velocity: {x: 0, y: 0}},
+          }
+        }
+        functions.clampPaddles(state)
+        if (state.paddles.right.position.y !== 90) {
+          throw new Error(`left paddle should have moved down to 1/2 its height from the top of the area (expected y = 90, found y = ${state.paddles.right.position.y})`)
+        }
+        if (state.paddles.right.position.x !== 0) {
+          throw new Error(`left paddle should not have moved horizontally`)
+        }
+      },
+      message: 'clampPaddles should stop the right paddle at the bottom of the area'
     }].map((x, i) => {
       try {
         const lines = x.test.toString().split('\n')
