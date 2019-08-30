@@ -211,6 +211,27 @@ function testCode (functions) {
         }
       },
       message: 'clampPaddles should stop the right paddle at the bottom of the area'
+    }, {
+      test: function () {
+        var state = {
+          paddles: {
+            left: { position: { x: 10, y: 10}, height: 20, width: 20, velocity: {x: 0, y: 0}},
+            right: { position: { x: 90, y: 10}, height: 20, width: 20, velocity: {x: 0, y: 0}},
+          },
+          ball: {
+            position: { x: 10, y: 10 },
+            velocity: { x: 1, y: 9 },
+          }
+        }
+        functions.bouncePaddles(state)
+        if (state.ball.velocity.x !== -1) {
+          throw new Error(`ball should have reversed its horizontal velocity (expected -1, was ${state.ball.velocity.x})`)
+        }
+        if (state.ball.velocity.y !== 9) {
+          throw new Error(`ball should not have changed its vertical velocity (expected 9, was ${state.ball.velocity.y})`)
+        }
+      },
+      message: 'bouncePaddles should reverse the ball\'s direction if the ball is inside the left paddle'
     }].map((x, i) => {
       try {
         const lines = x.test.toString().split('\n')
