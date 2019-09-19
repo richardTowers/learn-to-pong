@@ -2,7 +2,7 @@
   "name": "learn-to-pong",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://richard-towers.com/learn-to-pong/",
+  "homepage": "https://learn-to-pong.richardtowe.rs",
   "dependencies": {
     "@types/jest": "24.0.18",
     "@types/lodash.debounce": "^4.0.6",
