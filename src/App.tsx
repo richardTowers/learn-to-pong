@@ -10,8 +10,36 @@ import 'codemirror/lib/codemirror.css'
 import 'codemirror/mode/javascript/javascript'
 import 'codemirror/theme/cobalt.css'
 
-const defaultCode = `function init(state) {
+const defaultCode = `function init(width, height, time) {
+  // You can probably leave this code more or less as it is. It's here to show
+  // you what the "state" object looks like at the beginning.
 
+  const ballSpeed = width / 500
+  return {
+    previousTime: time,
+    paddlesSpeed: height / 50,
+    areaWidth: width,
+    areaHeight: height,
+    ball: {
+      radius: 10,
+      velocity: { x: ballSpeed * Math.PI / 2, y: ballSpeed * Math.PI / 2 },
+      position: { x: width / 2, y: height / 2 },
+    },
+    paddles: {
+      left: {
+        velocity: { x: 0, y: 0 },
+        position: { x: 20, y: height / 2 },
+        width: 5,
+        height: height / 5,
+      },
+      right: {
+        velocity: { x: 0, y: 0 },
+        position: { x: width - 20, y: height / 2 },
+        width: 5,
+        height: height / 5,
+      },
+    },
+  }
 }
 
 function moveBall(ball, dt) {

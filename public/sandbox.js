@@ -346,7 +346,10 @@ let functions = {};
 function tick(state, time) {
   const dt = time ? Math.min(1, (time - state.previousTime) / 1000) : 0
   if (!state.initialised && functions.init) {
-    functions.init(state)
+    const newState = functions.init(state.areaWidth, state.areaHeight, state.previousTime)
+    if(newState) {
+      Object.assign(state, newState)
+    }
     state.initialised = true
   }
   ;(functions.movePaddles || noop)(state.paddles, dt)
